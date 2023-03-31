@@ -1,18 +1,18 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
-import {createPool} from 'mysql';
+import { createPool } from 'mysql';
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT;
 
-var pool  = createPool({
-  connectionLimit : parseInt(String(process.env.MYSQL_POOL_CONNECTIONS)),
-  host            : process.env.MYSQL_HOST,
-  user            : process.env.MYSQL_USERNAME,
-  password        : process.env.MYSQL_PASSWORD,
-  database        : process.env.MYSQL_DATABASE
+var pool = createPool({
+  connectionLimit: parseInt(String(process.env.MYSQL_POOL_CONNECTIONS)),
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USERNAME,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE
 });
 
 pool.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
@@ -22,9 +22,9 @@ pool.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
 
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('Express + TypeScript Server');
+  res.send('Express + TypeScript Server');
 });
 
 app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
+  console.log(`Server is running at http://localhost:${port}`);
 });
